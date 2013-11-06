@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Unofficial DreamMu price list</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+<script src="classes.js" type="text/javascript"></script>
+<script src="prices.js" type="text/javascript"></script>
+<script src="ctl.js" type="text/javascript"></script>
+<style type="text/css">
+    #order { width: 50%; float:left; background-color: green;}
+    #invoice { width: 50%; float: right; background-color: blue; }
+    .itemBlock { margin-top: 1em; padding: 1em; }
+    .topButtons { text-align:center; border: 1px solid #333; }
+    .options label {margin-left:2em;}
+</style>
+</head>
+<body>
+    <h1>Unofficial DreamMu price list</h1>
+    <div id="order">
+        <div class="topButtons">
+            <button id="resetOrder">Reset item list</button>
+            <button id="addItemBlock">Add new item(s)</button>
+        </div>
+    </div>
+    <div id="invoice">
+        <div class="topButtons">
+            <button id="recalculate">Recalculate</button>
+        </div>
+        <div class="results"></div>
+    </div>
+</body>
+</html>

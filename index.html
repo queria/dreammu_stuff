@@ -5,28 +5,52 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 <script src="classes.js" type="text/javascript"></script>
 <script src="prices.js" type="text/javascript"></script>
+<script src="translate.js" type="text/javascript"></script>
 <script src="ctl.js" type="text/javascript"></script>
 <style type="text/css">
-    #order { width: 50%; float:left; background-color: green;}
-    #invoice { width: 50%; float: right; background-color: blue; }
-    .itemBlock { margin-top: 1em; padding: 1em; }
-    .topButtons { text-align:center; border: 1px solid #333; }
-    .options label {margin-left:2em;}
+    body { background-color: black; color: #fDa665;
+        font-size: 10pt;
+        font-family: verdana, geneva, lucida, tahoma, helvetica, sans-serif;
+    }
+    input, select { background-color: #111; color: #ccc; border: 1px solid #ffa500; }
+    button { background-color: #222; color: #da0; border: 1px solid #fff5a0; }
+    #contentWrap { background-color: #181815; border: 2px solid #1f1f1c; color: #D9AD04; min-height: 600px; padding:1em;}
+    #footer { text-align: center; font-size: 90%; }
+    #order { min-width:10%; max-width: 49%; float:left; }
+    #invoice { padding-left: 50%; }
+    .itemBlock { margin-top: 2em; }
+    #order .itemBlock { clear:left; }
+    .topButtons { text-align:center; }
+    .options label {margin-left:1em;float:left;white-space:nowrap;}
+    .blockSum, .totalSum { display:block; }
+    .blockSum strong, .totalSum strong { display: inline-block; min-width: 7em; }
+    .totalSum { border: 1px solid red; margin-top: 2em; }
 </style>
 </head>
 <body>
-    <h1>Unofficial DreamMu price list</h1>
-    <div id="order">
-        <div class="topButtons">
-            <button id="resetOrder">Reset item list</button>
-            <button id="addItemBlock">Add new item(s)</button>
+    <h1>title-here</h1>
+    <div id="contentWrap">
+        <div id="order">
+            <div class="topButtons">
+                <button id="resetOrder">reset-btn</button>
+                <button id="addItemBlock">add-btn</button>
+            </div>
         </div>
+        <div id="invoice">
+            <div class="topButtons">
+                <button id="recalculate">recalc-btn</button>
+            </div>
+            <div class="results"></div>
+        </div>
+        <br style="visibility:none; height:1px; clear:both; display:block;" />
     </div>
-    <div id="invoice">
-        <div class="topButtons">
-            <button id="recalculate">Recalculate</button>
-        </div>
-        <div class="results"></div>
+    <div id="footer">
+        Detaily a aktuální informace viz oficiální ceníky
+        <a href="http://dreammu.cz/forum/index.php?/topic/84-cenik-za-kredity/">za kredity</a>
+        a
+        <a href="http://dreammu.cz/forum/index.php?/topic/42-cenik-za-greeny/">za greeny</a>
+        na <a href="http://dreammu.cz/forum/">diskuzním fóru</a> serveru
+        <a href="http://dreammu.cz/" title="Dobrý český MU Online private server">DreamMU.cz</a>.
     </div>
 </body>
 </html>

@@ -47,23 +47,23 @@ var prices_green = {
     'weapon': {
         'B': {
             'rate': 80, 'id': 75, 'speed': 73, 'id/lvl': 70,
-            'lifehunt': 65, 'manahunt': 65, '+11': 5, 'luck': 0
+            'lifehunt': 65, 'manahunt': 65, '+11': 75
         },
         'C': {
             'rate': 60, 'id': 55, 'speed': 53, 'id/lvl': 50,
-            'lifehunt': 45, 'manahunt': 45, '+11': 5, 'luck': 5
+            'lifehunt': 45, 'manahunt': 45, '+11': 55
         },
         'D': {
             'rate': 50, 'id': 45, 'speed': 43, 'id/lvl': 40,
-            'lifehunt': 35, 'manahunt': 35, '+11': 5, 'luck': 0
+            'lifehunt': 35, 'manahunt': 35, '+11': 45
         },
         'E': {
             'rate': 40, 'id': 35, 'speed': 33, 'id/lvl': 30,
-            'lifehunt': 25, 'manahunt': 25, '+11': 5, 'luck': 5
+            'lifehunt': 25, 'manahunt': 25, '+11': 35
         },
         'F': {
             'rate': 30, 'id': 25, 'speed': 23, 'id/lvl': 20,
-            'lifehunt': 15, 'manahunt': 15, '+11': 5, 'luck': 3
+            'lifehunt': 15, 'manahunt': 15, '+11': 25
         }
     },
     'wings': {
@@ -81,7 +81,14 @@ var prices_bol = {
         'D': {'luck': 10},
         'E': {'luck': 5},
         'F': {'luck': 0}
-    }
+    },
+    'weapon': {
+        'B': {'luck': 20},
+        'C': {'luck': 15},
+        'D': {'luck': 10},
+        'E': {'luck': 5},
+        'F': {'luck': 3}
+    },
 };
         
     

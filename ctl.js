@@ -68,7 +68,6 @@ $(function () {
     var recalc = function () {
         var invoice = '';
         var total_sum = empty_sum();
-        //invoice += tr('Recalculated') + ' ... <br />';
         $('#order .itemBlock').each(function(){
             var type = $('.itemTypes', this).val();
             var cls = $('.itemNames :selected', this).attr('data-cls');
@@ -82,14 +81,6 @@ $(function () {
                 item_prices = find_prices(type, cls, opt);
 
                 invoice += ' + ' + opt + ':<br />';
-                //invoice = (invoice +
-                //    cnt + ' &times; ' + opt +
-                //    ' ' + tr('for') + ' ' +
-                //    type +
-                //    ' ' + tr('of class') + ' ' +
-                //    cls +
-                //    ' ['+prices2str(item_prices)+']' +
-                //    '<br />');
                 for (grp in item_prices) {
                     if (item_prices[grp]) {
                         opt_price = item_prices[grp] * cnt;
@@ -120,13 +111,6 @@ $(function () {
         select.append(items);
     };
 
-    //var collectOptions = function (itemType,) {
-    //    var options = [];
-    //    var first_
-    //    for (opt in prices_green[itemType]
-    //};
-    //
-    //
     var fillItemTypes = function (typeSelect) {
         for (typeName in classes) {
             typeSelect.append('<option>'+typeName+'</option>');
@@ -146,7 +130,6 @@ $(function () {
             sortOptions(clsGroup);
             nameSelect.append(clsGroup);
         }
-        //sortOptions(nameSelect);
         $('option', nameSelect).eq(0).prop('selected', true);
         nameSelect.change();
     };
@@ -181,23 +164,28 @@ $(function () {
             optionsBlock.append($('<label><input type="checkbox"' +
                         ' value="'+options[opt]+'">'+options[opt]+'</label>'));
         }
-        $('input', optionsBlock).change(recalc);
+        $('input', optionsBlock).change(function() {
+            if ($(this).prop('checked')) {
+                $(this).parent().addClass('checked');
+            } else {
+                $(this).parent().removeClass('checked');
+            }
+            recalc();
+        });
         recalc();
     };
 
     var addItemBlock = function () {
-        block = $('<div id="itemBlock_' + $('.itemBlock').length + '" class="itemBlock"></div>');
-        block.append('<div>'+'<input type="text" class="itemCount" value="1" size="3">' +
+        var blockNum = $('.itemBlock', $('#order')).length;
+        block = $('<div id="itemBlock_' + blockNum + '" class="itemBlock"></div>');
+        block.append('<div>' +
+                ' <input type="text" class="itemCount" value="1" size="3">' +
                 ' &times; <select class="itemTypes"></select>' +
-                ' <select class="itemNames"></select></div>' +
+                ' <select class="itemNames"></select>' +
+                ' <button class="remove">'+tr('remove')+'</button>' +
                 '</div>' +
                 '<div class="options"></div>'
                 );
-        //block.append('<div>'+tr('Select type of items')+': <select class="itemTypes"></select></div>' +
-        //    '<div>'+tr('Select item name')+': <select class="itemNames"></select></div>' +
-        //    '<div>'+tr('Specify item count')+': <input type="text" class="itemCount" value="1"></div>' +
-        //    '<div>'+tr('Select wanted options')+': <div class="options"></div></div>'
-        //    );
         var itemTypes = $('.itemTypes', block);
         var itemNames = $('.itemNames', block);
         var options = $('.options', block);
@@ -214,18 +202,26 @@ $(function () {
                 options);
         });
 
-        //itemNames.change(function() {
-        //});
         $('.itemCount', block).change(recalc);
+        $('.remove', block).click(function () {
+            removeItemBlock(blockNum);
+        });
 
         itemTypes.change();
         $('#order').append(block);
+        recalc();
     };
     var removeItemBlock = function (blockNum) {
-        $('#itemBlock_' + blockNum).remove();
+        if ($('.itemBlock', $('#order')).length < 2) {
+            removeAllItemBlocks();
+        } else {
+            $('#itemBlock_' + blockNum).remove();
+            recalc();
+        }
     };
     var removeAllItemBlocks = function () {
-        $('.itemBlock').remove();
+        $('.itemBlock', $('#order')).remove();
+        addItemBlock();
     };
 
     var reinitUI = function () {
@@ -233,7 +229,6 @@ $(function () {
         document.title = tr('Unofficial DreamMU price list')
         $('#resetOrder').text(tr('Reset item list'));
         $('#addItemBlock').text(tr('Add new item(s)'));
-        $('#recalculate').text(tr('Recalculate'));
         $('#resetOrder').click();
         $('#footer .langBlock a').each(function() {
             if($(this).text() == tr_current_lang) {
@@ -263,9 +258,8 @@ $(function () {
         $('#footer').append(lang_block);
     };
 
-    $('#resetOrder').click(function() { removeAllItemBlocks(); addItemBlock(); });
+    $('#resetOrder').click(function() { removeAllItemBlocks(); });
     $('#addItemBlock').click(addItemBlock);
-    $('#recalculate').click(recalc);
 
     initLangLinks();
     reinitUI();

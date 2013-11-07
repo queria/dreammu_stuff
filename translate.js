@@ -79,6 +79,9 @@ _cz('Reset item list', 'Vymazat seznam predmetu');
 _en('Add new item(s)');
 _cz('Add new item(s)', 'Pridat novy predmet');
 
+_en('remove');
+_cz('remove', 'odebrat');
+
 _en('Recalculate');
 _cz('Recalculate', 'Prepocitat');
 

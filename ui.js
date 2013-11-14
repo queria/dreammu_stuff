@@ -1,8 +1,12 @@
 // vim: set et sw=4 ts=4 ft=javascript:
 $(function () {
 
-    var _ = function (key, lang) {
-        return Translate.translate(key, lang);
+    var _ = function (key, lang, ign) {
+        return Translate.translate(key, lang, ign);
+    };
+
+    var __ = function (key, default_val) {
+        return Translate.translate_def(key, default_val);
     };
 
     var recalc = function () {
@@ -15,18 +19,18 @@ $(function () {
             var cnt = $('.itemCount', this).val();
             var block_sum = new Prices.Sum();
             invoice += '<div class="itemBlock">';
-            invoice += ('<strong class="title">' + name + ' ' + type + ' ' + _('of class') + ' ' + cls + '</strong><br />');
+            invoice += ('<strong class="title">' + __(name) + ' - ' + _(type) + ' ' + _('of class') + ' ' + __(cls) + '</strong><br />');
             $('.options input:checked', this).each(function() {
                 var opt = $(this).val();
                 item_prices = Prices.find_prices(type, cls, opt);
 
-                invoice += ' + ' + opt + ':<br />';
+                invoice += ' <span class="optMark">+</span> ' + __('opts/'+opt, opt) + ':<br />';
                 for (grp in item_prices) {
                     if (item_prices[grp]) {
                         opt_price = item_prices[grp] * cnt;
                         invoice = (invoice +
-                            ' &nbsp; &nbsp; ' + cnt + '&times;'+item_prices[grp] + ' = ' +
-                            opt_price + ' ' + grp + '<br />');
+                            '<span class="optLine"> &nbsp; &nbsp; ' + cnt + '&times;'+item_prices[grp] + ' = ' +
+                            opt_price + ' ' + __(grp) + '</span><br />');
                         block_sum[grp] += Number(opt_price);
                     }
                 }
@@ -53,7 +57,7 @@ $(function () {
 
     var fillItemTypes = function (typeSelect) {
         for (typeName in ItemClasses.types) {
-            typeSelect.append('<option>'+typeName+'</option>');
+            typeSelect.append('<option value="'+typeName+'">'+_(typeName)+'</option>');
         }
     };
 
@@ -62,10 +66,10 @@ $(function () {
         nameSelect.empty();
         for (cls in ItemClasses.types[type]) {
             if (ItemClasses.disabled.indexOf(cls) != -1) { continue; }
-            var clsGroup = $('<optgroup label="'+_('Class')+' '+cls+'"></optgroup>');
+            var clsGroup = $('<optgroup label="'+_('Class')+' '+__(cls)+'"></optgroup>');
             for (itemIdx in ItemClasses.types[type][cls]) {
                 item = ItemClasses.types[type][cls][itemIdx];
-                clsGroup.append('<option data-cls="'+cls+'">'+item+'</option>');
+                clsGroup.append('<option data-cls="'+cls+'">'+__(item)+'</option>');
             };
             sortOptions(clsGroup);
             nameSelect.append(clsGroup);
@@ -80,13 +84,15 @@ $(function () {
         options = Prices.find_options(type, cls);
         if (options.length < 1) {
             optionsBlock.append('<strong>' + _('Prices for') + ' ' +
-                    type + ' ' + _('of class') + ' ' +
-                    cls + ' ' + _('not defined yet') + '.</strong>');
+                    __(type) + ' ' + _('of class') + ' ' +
+                    __(cls) + ' ' + _('not defined yet') + '.</strong>');
             return;
         }
         for (opt in options) {
             optionsBlock.append($('<label><input type="checkbox"' +
-                        ' value="'+options[opt]+'">'+options[opt]+'</label>'));
+                        ' value="'+options[opt]+'">' +
+                        __('opts/'+options[opt], options[opt]) +
+                        '</label>'));
         }
         $('input', optionsBlock).change(function() {
             if ($(this).prop('checked')) {

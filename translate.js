@@ -56,6 +56,54 @@ var Translate = new function () {
 
         _en('Select wanted options');
         _cz('Select wanted options', 'Zvol pozadovane opty');
+
+        _en('set-item');
+        _cz('set-item', 'setovy predmet');
+
+        _en('weapon');
+        _cz('weapon', 'zbran');
+
+        _en('wings');
+        _cz('wings', 'kridla');
+
+        _en('misc');
+        _cz('misc', 'ostatni');
+
+        _en('shield');
+        _cz('shield', 'stit');
+
+        _en('Ancient (Summoner set)');
+        _cz('Ancient (Summoner set)', 'Ancient (set na Summonera)');
+
+        _en('credit', 'credits');
+        _cz('credit', 'kreditu');
+
+        _en('opts/creation', 'creation');
+        _cz('opts/creation', 'vyroba');
+
+        _en('opts/excel', 'excel');
+        _cz('opts/excel', 'excelace');
+
+        _en('opts/fenrir-red', 'fenrir-red');
+        _cz('opts/fenrir-red', 'fenrir-cerveny');
+
+        _en('opts/fenrir-blue', 'fenrir-blue');
+        _cz('opts/fenrir-blue', 'fenrir-modry');
+
+        _en('opts/fenrir-black', 'fenrir-black');
+        _cz('opts/fenrir-black', 'fenrir-cerny');
+
+        _en('opts/fenrir-gold', 'fenrir-gold');
+        _cz('opts/fenrir-gold', 'fenrir-zlaty');
+
+        _en('opts/nick-change', 'nick-change');
+        _cz('opts/nick-change', 'prejmenovani-postavy');
+
+        _en('opts/gain-3rd-quest', 'gain-3rd-quest');
+        _cz('opts/gain-3rd-quest', 'provedeni-3rd-questu');
+
+        _en('opts/guild-transfer', 'guild-transfer');
+        _cz('opts/guild-transfer', 'predani-guildy');
     };
 
     this.has = function (lang_code) {
@@ -103,7 +151,7 @@ var Translate = new function () {
         };
     }
 
-    this.translate = function (key, lang) {
+    this.translate = function (key, lang, default_value) {
         // Returns translation of provided key and language.
         //
         // If lang is not specified uses the currently active one (tr_current_lang).
@@ -112,9 +160,22 @@ var Translate = new function () {
         }
 
         if (this.table[key] == undefined || this.table[key][lang] == undefined) {
+            if (default_value === true) {
+                return key;
+            }
+            if (default_value != undefined) {
+                return default_value;
+            }
             return 'NO_TRANSLATION['+key+'/'+lang+']';
         }
         return this.table[key][lang];
+    };
+
+    this.translate_def = function (key, default_val) {
+        if (default_val == undefined) {
+            default_val = key;
+        }
+        return this.translate(key, undefined, default_val);
     };
 
     this.init();

@@ -13,7 +13,7 @@ var ItemClasses = new function () {
             'C': ['Dark Phoenix', 'Great Dragon', 'Dark Soul', 'Red Spirit',
             'Dark Master', 'Thunder Hawk', 'Hurricane', 'Black Rose'],
             'D': ['Black Dragon', 'Grand Soul', 'Light Plate', 'Dark Steel',
-            'Adamantine', 'Storm Crow', 'Divine', 'Ancient (set na Summonera)'],
+            'Adamantine', 'Storm Crow', 'Divine', 'Ancient (Summoner set)'],
             'E': ['Brass', 'Scale', 'Bone', 'Sphinx', 'Spirit', 'Silk', 'Legendary',
             'Guardian', 'Dragon', 'Plate', 'Red Wing', 'Wind'],
             'F': ['Bronze', 'Leather', 'Vine', 'Pad', 'Violet wind']

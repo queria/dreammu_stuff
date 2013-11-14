@@ -208,7 +208,7 @@ var Prices = new function () {
         // format item_prices (as returned by find()) into string
         var s = '';
         for (grp in item_prices) {
-            s += item_prices[grp] + ' ' + grp;
+            s += item_prices[grp] + ' ' + Translate.translate_def(grp);
             s += ', ';
         }
         return s;
@@ -232,7 +232,7 @@ var Prices = new function () {
             for (grp in Prices.groups) {
                 res += ('<strong>' +
                         String(this[grp]) +
-                        ' ' + grp +
+                        ' ' + Translate.translate_def(grp) +
                         '</strong> ');
                 if (grp == 'credit') {
                     res += ('<strong>' +

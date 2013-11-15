@@ -36,6 +36,7 @@
 <body>
     <h1>title-here</h1>
     <div id="contentWrap">
+        <div id="nojs">JavaScript required for this in-browser calculator. Sorry.</div>
         <div id="order">
             <div class="topButtons">
                 <button id="resetOrder">reset-btn</button>
@@ -58,5 +59,8 @@
         na <a href="http://dreammu.cz/forum/">diskuzním fóru</a> serveru
         <a href="http://dreammu.cz/" title="Dobrý český MU Online private server">DreamMU.cz</a>.
     </div>
+    <script type="text/javascript">
+        $('#nojs').hide();
+    </script>
 </body>
 </html>

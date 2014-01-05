@@ -62,6 +62,8 @@ var ItemClasses = new function () {
         },
         'misc': {
             'misc': ['misc'],
+            'ring': ['ring'],
+            'pendant': ['pendant'],
         },
 
         'shield': {

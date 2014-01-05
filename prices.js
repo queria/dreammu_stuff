@@ -9,7 +9,7 @@
 // :%s/[0-9]\+\. .*\([Ll]uck\|[Ss]kill\|excel\).* \([0-9]\+\) .*/'\L\1': \2/
 // - convert block labels
 // :%s/.*Třída \([A-Z]\)/'\1': {/
-// - convert remaning brackets
+// - convert remaining brackets
 // :%s/)'/'/
 // - add commas after prices
 // :%s/\([0-9]\)$/\1,/
@@ -71,6 +71,20 @@ var Prices = new function () {
                 '2nd': {
                     'ignore': 50, 'speed': 40, 'stamina': 35,
                     'hp': 35, 'mana': 35, '+11': 40
+                },
+                '3rd': {
+                    'ignore': 80, 'full-reflect': 70, 'hp-replen': 50,
+                    'mana-replen': 50, '+11': 70
+                }
+            },
+            'misc': {
+                'ring': { /* as class C, set-item */
+                    'rate': 55, 'dd': 50, 'ref': 48, 'zen': 45,
+                    'maxhp': 40, 'maxmana': 40, '+11': 50
+                },
+                'pendant': { /* as class C, weapon */
+                    'rate': 60, 'id': 55, 'speed': 53, 'id/lvl': 50,
+                    'lifehunt': 45, 'manahunt': 45, '+11': 55
                 }
             }
         },
@@ -152,8 +166,8 @@ var Prices = new function () {
                     'luck': 5, 'creation': 7
                 },
                 '3rd': {
-                    'ignore': 30, 'speed': 20, 'stamina': 15,
-                    'hp': 15, 'mana': 15, '+13': 30,
+                    'ignore': 30, 'speed': 20, 'full-reflect': 20,
+                    'hp-replen': 15, 'mana-replen': 15, '+13': 30,
                     'luck': 20, 'creation': 25
                 }
             },
@@ -163,10 +177,24 @@ var Prices = new function () {
                     'fenrir-black': 60, 'fenrir-gold': 120,
                     'nick-change': 20, 'gain-3rd-quest': 20,
                     'guild-transfer': 20
+                },
+                'ring': { /* as class C, set-item */
+                    'rate': 20, 'dd': 18, 'ref': 17, 'zen': 14,
+                    'maxhp': 11, 'maxmana': 11, '+13': 18,
+                    'excel': 20
+                },
+                'pendant': { /* as class C, weapon */
+                    'rate': 24, 'id': 22, 'speed': 21, 'id/lvl': 19,
+                    'lifehunt': 15, 'manahunt': 15, '+13': 22,
+                    'skill': 15, 'excel': 24
                 }
             }
         }
     };
+
+    this.groups['green']['shield'] = this.groups['green']['set-item'];
+    this.groups['bol']['shield'] = this.groups['bol']['set-item'];
+    this.groups['credit']['shield'] = this.groups['credit']['set-item'];
 
     this.find_options = function (type, cls) {
         // find available options for given class

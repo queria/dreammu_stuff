@@ -14,8 +14,8 @@ var Translate = new function () {
         var _en = this.adder('en');
         var _cz = this.adder('cz');
 
-        _en('Unofficial DreamMU price list');
-        _cz('Unofficial DreamMU price list', 'Neoficialni cenik DreamMU');
+        _en('Unofficial DaeMU price list');
+        _cz('Unofficial DaeMU price list', 'Neoficialni cenik DaeMU');
 
         _en('Reset item list');
         _cz('Reset item list', 'Vymazat seznam predmetu');
@@ -76,7 +76,7 @@ var Translate = new function () {
         _cz('Ancient (Summoner set)', 'Ancient (set na Summonera)');
 
         _en('credit', 'credits');
-        _cz('credit', 'kreditu');
+        _cz('credit', 'zlatých');
 
         _en('opts/creation', 'creation');
         _cz('opts/creation', 'vyroba');

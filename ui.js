@@ -155,8 +155,8 @@ $(function () {
     };
 
     var reinitUI = function () {
-        $('h1').text(_('Unofficial DreamMU price list'));
-        document.title = _('Unofficial DreamMU price list')
+        $('h1').text(_('Unofficial DaeMU price list'));
+        document.title = _('Unofficial DaeMU price list')
         $('#resetOrder').text(_('Reset item list'));
         $('#addItemBlock').text(_('Add new item(s)'));
         $('#resetOrder').click();
